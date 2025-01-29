@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Diary</title>
+</head>
+<body>
+    <h1>Мой дневник</h1>
+    <h2>Создать заметку</h2>
+    <form method="post" action="{% url 'main' %}">
+        {% csrf_token %}
+        <lable for="title">Название </lable></br>
+        <input type="text" id="title" name="title" required></br></br>
+
+        <lable for="text">Текст </lable></br>
+        <textarea id="text" name="text" rows="4" cols="50" required></textarea></br></br>
+
+        <button type="submit">Создать</button>
+    </form></br>
+
+    <h2>Заметки</h2>
+    {% for note in notes %}
+        <p>{{ note.date_time }}</p>
+        <h3>{{ note.title }}</h3>
+        <p>{{ note.text }}</p></br>
+    {% endfor %}
+</body>
+</html>
